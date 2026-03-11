@@ -23,8 +23,8 @@ public class PlayerMove : MonoBehaviour
         // 사용자 키보드입력을 받아, 플레이어를 앞뒤좌우 이동시킨다.
         if(Input.GetKey(KeyCode.W))
         {
-            // Vector3 dir = Vector3.forward; // 월드좌표(절대좌표) 기준의 앞방향
-            Vector3 dir = transform.forward;  // 로컬좌표 기준의 앞방향
+            //Vector3 dir = Vector3.forward; // 월드좌표(절대좌표) 기준의 앞방향
+            Vector3 dir = transform.forward;  // 로컬좌표 기준의 앞방향 (0,0,1)
 
             transform.position = transform.position + dir * speed * Time.deltaTime;
         }
@@ -32,7 +32,7 @@ public class PlayerMove : MonoBehaviour
         if(Input.GetKey(KeyCode.S))
         {
             //Vector3 dir = -Vector3.forward;
-            Vector3 dir = -transform.forward;
+            Vector3 dir = -transform.forward; // (0,0,-1)
 
             transform.position = transform.position + dir * speed * Time.deltaTime;
         }

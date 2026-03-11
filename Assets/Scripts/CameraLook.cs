@@ -38,7 +38,7 @@ public class CameraLook : MonoBehaviour
     private void RotateBody()
     {
         // 마우스의 입력을 받아서 플레이어의 몸통을 좌, 우로 돌린다.
-        float mouseX = Input.GetAxis("Mouse X");
+        float mouseX = Input.GetAxis("Mouse X"); // -1~1
 
         // 짐벌락(gimbal lock): 오일러 회전의 순서에 따라 회전값이 변하는 형태
         // 쿼터니언: 4개의 원소로 이루어진 회전값(짐벌락을 해결하기 위해 탄생)

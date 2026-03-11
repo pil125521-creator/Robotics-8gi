@@ -59,7 +59,7 @@ public class SequenceManager : MonoBehaviour
 
                 // animator.SetInteger("AnimationID", 10); // 바로 앉기
                 Invoke("StartAnimation", 2.0f);
-                InvokeRepeating("CreateBox", 3, 1); // 3초 후 1초마다 함수를 반복
+                //InvokeRepeating("CreateBox", 3, 1); // 3초 후 1초마다 함수를 반복
             }
 
             return;
