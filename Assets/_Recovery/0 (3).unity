@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &105628763 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6349384442204505658, guid: cc6b3e636f70b5044994ea3e192717ac, type: 3}
+  m_PrefabInstance: {fileID: 1139695031}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &157207112
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,7 +2514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.ProbeVolumePerSceneData
   serializedBakingSet: {fileID: 0}
-  sceneGUID: 7544b71557864f748a2fe6f93c3fa3f8
+  sceneGUID: 62be4f41b7ec3e64e92de89df2533353
   obsoleteAsset: {fileID: 0}
   obsoleteCellSharedDataAsset: {fileID: 0}
   obsoleteCellSupportDataAsset: {fileID: 0}
@@ -2573,7 +2578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda7f0abcfde4404aac0d10250674ffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  obj: {fileID: 6349384441065085837}
+  obj: {fileID: 105628763}
   targetA: {fileID: 2129454778}
   targets:
   - {fileID: 2129454778}
@@ -2732,7 +2737,7 @@ Transform:
   - {fileID: 1856272639}
   - {fileID: 715501628}
   - {fileID: 1268486730}
-  - {fileID: 6349384441065085837}
+  - {fileID: 105628763}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1610324852
@@ -4103,11 +4108,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1358982109}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &6349384441065085837 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6349384442204505658, guid: cc6b3e636f70b5044994ea3e192717ac, type: 3}
-  m_PrefabInstance: {fileID: 1139695031}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

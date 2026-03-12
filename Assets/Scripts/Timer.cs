@@ -75,8 +75,6 @@ public class Timer : MonoBehaviour
 
     IEnumerator FollowTarget(Vector3 targetPos)
     {
-        print("모터 1 작동");
-
         yield return new WaitForSeconds(1);
 
         print("모터 2 작동");
@@ -162,6 +160,6 @@ public class Timer : MonoBehaviour
             go.transform.position += dir.normalized * 2 * Time.deltaTime;
 
             yield return null; // 프레임 업데이트 대기
-        }
+        }   
     }
 }
