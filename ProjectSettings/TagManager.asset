@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - "\uAE08\uC18D"
+  - Ball
   layers:
   - Default
   - TransparentFX
