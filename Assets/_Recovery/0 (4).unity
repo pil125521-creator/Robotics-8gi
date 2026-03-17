@@ -4027,14 +4027,14 @@ MonoBehaviour:
   frontSignal_LS: 0
   backSignal_SOL: 0
   frontSignal_SOL: 0
-  solenoidType: 0
+  solenoidType: 1
   rod: {fileID: 1249466504}
-  maxPos: 0
-  minPos: 0
+  maxPos: -1.9
+  minPos: -0.2
   speed: 2
   returnSpeed: 3
-  mrBackLS: {fileID: 0}
-  mrFrontLS: {fileID: 0}
+  mrBackLS: {fileID: 865672545}
+  mrFrontLS: {fileID: 1867078880}
   isMoving: 0
 --- !u!1 &1052239413
 GameObject:
@@ -4782,7 +4782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.ProbeVolumePerSceneData
   serializedBakingSet: {fileID: 0}
-  sceneGUID: 5dbc4257d2157934093f4addf0360b7c
+  sceneGUID: 8a7d0716fb484e84187664bc3a747f5c
   obsoleteAsset: {fileID: 0}
   obsoleteCellSharedDataAsset: {fileID: 0}
   obsoleteCellSupportDataAsset: {fileID: 0}
@@ -4866,7 +4866,7 @@ Transform:
   m_GameObject: {fileID: 1249466503}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.4216579, z: 0}
+  m_LocalPosition: {x: -0, y: -0.2, z: 0}
   m_LocalScale: {x: 0.31451073, y: 0.99423045, z: 0.3145107}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 /// <summary>
 /// PLC의 출력신호(ex. Y20)를 받아 솔레노이드에 신호가 들어온다.
@@ -32,17 +33,113 @@ public class Cylinder : MonoBehaviour
     public float returnSpeed = 3; // 단동 솔레노이드의 복귀 속도
     public MeshRenderer mrBackLS;
     public MeshRenderer mrFrontLS;
+    public bool isMoving;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        StartCoroutine(MoveForwardBySigal());
+        StartCoroutine(MoveBackwardBySigal());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // 키입력으로 PLC Mock 신호 주기
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            backSignal_LS = !backSignal_LS; // 버튼을 누를 때 마다 토글
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            frontSignal_LS = !frontSignal_LS; // 버튼을 누를 때 마다 토글
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            backSignal_SOL = !backSignal_SOL; // 버튼을 누를 때 마다 토글
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            frontSignal_SOL = !frontSignal_SOL; // 버튼을 누를 때 마다 토글
+
+            if(frontSignal_SOL)
+            {
+                Vector3 dir = new Vector3(rod.localPosition.x, maxPos, rod.localPosition.z);
+                StartCoroutine(MoveCylinder(dir));
+            }
+            else
+            {
+                Vector3 dir = new Vector3(rod.localPosition.x, minPos, rod.localPosition.z);
+                StartCoroutine(MoveCylinder(dir));
+            }
+        }
+    }
+
+    // PLC 신호는 Logic에 의해 계속 켜져있음 -> 
+    IEnumerator MoveCylinder(Vector3 to)
+    {
+        if(!isMoving)
+        {
+            isMoving = true;
+
+            while (true)
+            {
+                Vector3 dir = to - rod.localPosition;
+                float distance = dir.magnitude;
+
+                if(distance < 0.1f)
+                {
+                    isMoving = false;
+                        
+                    mrFrontLS.material.color = new Color(1, 0, 0, 0.7f);
+                        
+                    break;
+                }
+
+                rod.localPosition += dir.normalized * speed * Time.deltaTime;
+
+                yield return null;
+            }
+        }
+    }
+
+    IEnumerator MoveForwardBySigal()
+    {
+        while(true)
+        {
+            if(solenoidType == SolenoidType.단동형)
+            {
+                yield return new WaitUntil(() => frontSignal_SOL);
+            }
+            else
+            {
+                yield return new WaitUntil(() => frontSignal_SOL);
+            }
+
+            Vector3 dir = new Vector3(rod.localPosition.x, maxPos, rod.localPosition.z);
+            yield return MoveCylinder(dir);
+        }
+    }
+
+    IEnumerator MoveBackwardBySigal()
+    {
+        while (true)
+        {
+            if (solenoidType == SolenoidType.단동형)
+            {
+                yield return new WaitUntil(() => !frontSignal_SOL);
+            }
+            else
+            {
+                yield return new WaitUntil(() => backSignal_SOL);
+            }
+
+            Vector3 dir = new Vector3(rod.localPosition.x, minPos, rod.localPosition.z);
+            yield return MoveCylinder(dir);
+        }
     }
 }
