@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using static Cylinder;
 
 /// <summary>
 /// PLC의 출력신호(ex. Y20)를 받아 솔레노이드에 신호가 들어온다.
@@ -34,13 +35,48 @@ public class Cylinder : MonoBehaviour
     public MeshRenderer mrBackLS;
     public MeshRenderer mrFrontLS;
     public bool isMoving;
+    public bool isBack; // Rod가 뒤에있는지, 앞에 있는지 확인
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        TurnOnLS(true, true);
+
         StartCoroutine(MoveForwardBySigal());
         StartCoroutine(MoveBackwardBySigal());
+    }
+
+    void TurnOnLS(bool isBackLS, bool isOn)
+    {
+        switch(isBackLS)
+        {
+            case true: // Back
+                if(isOn)
+                {
+                    mrBackLS.material.color = new Color(1, 0, 0, 0.7f);
+                    backSignal_LS = true;
+                }
+                else
+                {
+                    mrBackLS.material.color = new Color(0, 0, 0, 0.7f);
+                    backSignal_LS = false;
+                }
+
+                break;
+            case false: // Front
+                if (isOn)
+                {
+                    mrFrontLS.material.color = new Color(1, 0, 0, 0.7f);
+                    frontSignal_LS = true;
+                }
+                else
+                {
+                    mrFrontLS.material.color = new Color(0, 0, 0, 0.7f);
+                    frontSignal_LS = false;
+                }
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -91,12 +127,23 @@ public class Cylinder : MonoBehaviour
                 Vector3 dir = to - rod.localPosition;
                 float distance = dir.magnitude;
 
-                if(distance < 0.1f)
+                if (distance < 0.1f)
                 {
                     isMoving = false;
-                        
-                    mrFrontLS.material.color = new Color(1, 0, 0, 0.7f);
-                        
+
+                    if (!isBack) // 앞쪽 끝에 왔을 때
+                    {
+                        TurnOnLS(false, true); // Front ON
+                        TurnOnLS(true, false); // Back OFF
+                        print("Front ON");
+                    }
+                    else if(isBack)
+                    {
+                        TurnOnLS(true, true);   // Back ON
+                        TurnOnLS(false, false); // Front OFF
+                        print("Back ON");
+                    }
+
                     break;
                 }
 
@@ -104,6 +151,13 @@ public class Cylinder : MonoBehaviour
 
                 yield return null;
             }
+        }
+        else
+        {
+            TurnOnLS(true, false);  // Back LS OFF
+            TurnOnLS(false, false); // Front LS OFF
+
+            print("Back/Front OFF");
         }
     }
 
@@ -119,6 +173,8 @@ public class Cylinder : MonoBehaviour
             {
                 yield return new WaitUntil(() => frontSignal_SOL);
             }
+
+            isBack = false;
 
             Vector3 dir = new Vector3(rod.localPosition.x, maxPos, rod.localPosition.z);
             yield return MoveCylinder(dir);
@@ -137,6 +193,8 @@ public class Cylinder : MonoBehaviour
             {
                 yield return new WaitUntil(() => backSignal_SOL);
             }
+
+            isBack = true;
 
             Vector3 dir = new Vector3(rod.localPosition.x, minPos, rod.localPosition.z);
             yield return MoveCylinder(dir);

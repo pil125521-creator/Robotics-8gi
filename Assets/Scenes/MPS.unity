@@ -5067,6 +5067,7 @@ GameObject:
   - component: {fileID: 1035766084}
   - component: {fileID: 1035766083}
   - component: {fileID: 1035766082}
+  - component: {fileID: 1035766086}
   m_Layer: 0
   m_Name: "\uACF5\uAE09 Cylinder"
   m_TagString: Untagged
@@ -5172,6 +5173,32 @@ Transform:
   - {fileID: 865672543}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &1035766086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035766081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e3bf35f7884de747960126b023749e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cylinder
+  backSignal_LS: 0
+  frontSignal_LS: 0
+  backSignal_SOL: 0
+  frontSignal_SOL: 0
+  solenoidType: 1
+  rod: {fileID: 1249466504}
+  maxPos: -1.9
+  minPos: -0.2
+  speed: 2
+  returnSpeed: 3
+  mrBackLS: {fileID: 865672545}
+  mrFrontLS: {fileID: 1867078880}
+  isMoving: 0
+  isBack: 0
 --- !u!1 &1052239413
 GameObject:
   m_ObjectHideFlags: 0
@@ -11358,5 +11385,5 @@ SceneRoots:
   - {fileID: 1099759612}
   - {fileID: 1543983293}
   - {fileID: 5475520}
-  - {fileID: 1816338845}
   - {fileID: 49845250}
+  - {fileID: 1816338845}
